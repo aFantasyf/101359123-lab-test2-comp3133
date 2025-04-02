@@ -1,0 +1,30 @@
+*{
+    color: white;
+}
+.mission-card {
+    margin: 16px;
+    max-width: 500px;
+  
+    .mission-patch {
+      max-height: 200px;
+      object-fit: contain;
+    }
+  
+    .mission-details {
+      min-height: 100px;
+      font-size: 0.9em;
+    }
+  
+    .rocket-info {
+      margin-top: 12px;
+      .label {
+        font-weight: 500;
+      }
+    }
+  
+    .action-buttons {
+      display: flex;
+      justify-content: space-around;
+      padding: 16px 0;
+    }
+  }

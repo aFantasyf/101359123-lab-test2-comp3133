@@ -1,0 +1,61 @@
+<app-missionfilter (yearSelected)="onYearSelected($event)"></app-missionfilter>
+
+<mat-grid-list cols="2" rowHeight="650px" gutterSize="20px">
+  <mat-grid-tile *ngFor="let launch of launches">
+    <mat-card class="mission-card">
+      <mat-card-header>
+        <mat-card-title>{{ launch.mission_name }}</mat-card-title>
+        <mat-card-subtitle>
+          Flight #{{ launch.flight_number }} ({{ launch.launch_year }})
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <img mat-card-image 
+           [src]="launch.links?.mission_patch_small || 'assets/placeholder.png'"
+           alt="Mission patch"
+           class="mission-patch">
+
+      <mat-card-content>
+        <p class="mission-description">
+          {{ launch.details || 'No mission details available.' }}
+        </p>
+        
+        <div class="rocket-info">
+          <span class="label">Rocket:</span>
+          <span *ngIf="launch.rocket">
+            {{ launch.rocket.rocket_name }} ({{ launch.rocket.rocket_type }})
+          </span>
+          <span *ngIf="!launch.rocket" class="no-data">
+            No rocket data
+          </span>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="action-buttons">
+        <a mat-button 
+           [href]="launch.links?.article_link!" 
+           target="_blank"
+           *ngIf="launch.links?.article_link"
+           class="link-button">
+          Article
+        </a>
+        
+        <a mat-button 
+           [href]="launch.links?.wikipedia!" 
+           target="_blank"
+           *ngIf="launch.links?.wikipedia"
+           class="link-button">
+          Wikipedia
+        </a>
+        
+        <a mat-button 
+           [href]="launch.links?.video_link!" 
+           target="_blank"
+           *ngIf="launch.links?.video_link"
+           class="link-button">
+          Video
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
